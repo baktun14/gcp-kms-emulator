@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Optional on-disk persistence: set `GCP_KMS_DATA_DIR` and the server restores its state from `state.json` in that directory on startup and rewrites it after every change, so key material (and anything encrypted with it) survives restarts. The state file holds plaintext private keys with mode `0600` and is meant for development keys only. Closes #5.
+- The Docker image creates `/data`, owned by the non-root `kmsmock` user, as a mount point for `GCP_KMS_DATA_DIR`.
+
 ## [0.8.2] - 2026-04-06
 
 ### Fixed
