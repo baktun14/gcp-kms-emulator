@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-10-14
+
 ### Added
 
 - `EC_SIGN_ED25519` asymmetric signing (pure EdDSA over the raw `data` field) via `AsymmetricSign` and `GetPublicKey` (SPKI PEM), over gRPC and REST
@@ -18,6 +20,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - `AsymmetricSign` now rejects a request that sets both `data` and `digest` with `INVALID_ARGUMENT` for every algorithm (previously the digest was used and the data silently ignored)
+
+## [0.9.0] - 2026-06-10
+
+### Added
+
+- `EC_SIGN_SECP256K1_SHA256` asymmetric signing via `AsymmetricSign` and `GetPublicKey` (SPKI PEM), over gRPC and REST
+  - ECDSA signatures over SHA-256 digests (DER/ASN.1), including the raw `data` field (hashed internally)
+  - Signatures are normalized to low-S form for Bitcoin/Ethereum compatibility
+- Dependency: `github.com/decred/dcrd/dcrec/secp256k1/v4` (the Go standard library does not include secp256k1)
 
 ## [0.8.2] - 2026-04-06
 
